@@ -1,0 +1,7 @@
+# Function-on-Function Linear Regression (1y3x_Sparse)
+
+*  lpr (cpu version)
+
+*  Gaussion Kernal
+
+* (Real) leave-one-subject-out CV for bandwidth selection

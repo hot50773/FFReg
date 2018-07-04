@@ -1,2 +1,2 @@
 # FFReg
-Functional on Functional Linear Regression
+Multivariate Function-on-Function Linear Regression

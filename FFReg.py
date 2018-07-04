@@ -19,8 +19,8 @@ this file contain functions for the simulation of function-on-function linear re
 
 =============================================================================================
 '''
-import new_fpca as fpca
-from new_fpca import lpr
+import fpca
+import lpr
 
 ###
 
@@ -43,8 +43,7 @@ def Get_FPCA_Result(X_data, candidate_h_mean, candidate_h_cov,
                        h_cov_dia = candidate_h_diag_cov,
                        fve = fve,
                        ker_fun = ker_fun,
-                       bw_select = bw_select,
-                       dtype = 'f8')
+                       bw_select =bw_select)
 
     return(result)
 
@@ -154,7 +153,7 @@ def Fit_Cov_XY(X_time_pts, Y_time_pts, obs_X, obs_Y, X_time_grid, Y_time_grid,
                                candidate_h = candidate_h_cov,
                                ker_fun = ker_fun)
     print('Bandwidth of cov: ', XY_bw)
-    fit_XY = lpr.Lpr(x = time_of_XY, y = XY, x0 = time_grid_of_XY, h = XY_bw, ker_fun = ker_fun, dtype = 'f8')
+    fit_XY = lpr.Lpr(x = time_of_XY, y = XY, x0 = time_grid_of_XY, h = XY_bw, ker_fun = ker_fun)
     fit_cov_XY = (fit_XY.reshape(X_time_grid.shape[0], Y_time_grid.shape[0])
                   - np.outer(fit_X_mean, fit_Y_mean))
 
@@ -320,8 +319,7 @@ class Fit_Mean_and_Cov(object):
                                 h = self.mean_bw,
                                 binning = binning,
                                 bin_weight = bin_weight,
-                                ker_fun = ker_fun,
-                                dtype = 'f8')
+                                ker_fun = ker_fun)
 
     def __Fit_Cov(self, x, y, x0, candidate_h, binning, ker_fun):
         self.cov_bw, xx_p, yy = self.__CV_Cov_Leave_One_Out(x, y, x0, candidate_h, ker_fun)
@@ -330,8 +328,7 @@ class Fit_Mean_and_Cov(object):
         fit_yy = lpr.Lpr_For_Bin([bin_yy.reshape(np.tile(self.__grid_shape, 2)), bin_xx.reshape(np.tile(self.__grid_shape, 2))],
                                  np.tile(self.__bin_width, 2),
                                  h = self.cov_bw,
-                                 ker_fun = ker_fun,
-                                 dtype = 'f8')
+                                 ker_fun = ker_fun)
         self.cov_fun = fit_yy.reshape(np.repeat(np.prod(self.__grid_shape), 2)) - np.outer(self.mean_fun, self.mean_fun)
 
     def __Standardize_Output(self):

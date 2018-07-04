@@ -367,7 +367,7 @@ def Compare_Fit_and_Real(fit, real, name, z_lim, save_plt = False, plot_error = 
 
 #
 def Plot_Restruct_Funcs(obs_time, obs_X, time_grid, fit_X, real_X, 
-                        num_plot, y_lim, legend_location = 2,
+                        num_plot, y_lim, legend_location = 4,
                         save_plt = False, plot_obs = False):
     
     for i in range(num_plot):
@@ -378,7 +378,7 @@ def Plot_Restruct_Funcs(obs_time, obs_X, time_grid, fit_X, real_X,
         if plot_obs:
             plt.plot(obs_time[i], obs_X[i], 'og', label = 'observation')
         plt.suptitle('Subject_'+ str(i+1))
-        plt.legend(loc=legend_location, bbox_to_anchor=(1.05, 1))
+        plt.legend(loc=legend_location)
         if save_plt:
             fig.savefig('Subject_'+ str(i+1) + '.png')
         
